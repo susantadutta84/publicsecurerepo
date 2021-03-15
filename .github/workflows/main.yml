@@ -43,8 +43,8 @@ jobs:
         #trufflehog –regex --json file:///home/runner/work/publicsecurerepo/publicsecurerepo
         #trufflehog –regex file:"//$PWD" > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
         #trufflehog –regex --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/  > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
-        trufflehog --regex --entropy=False /home/runner/work/publicsecurerepo/publicsecurerepo/
-        trufflehog –regex /home/runner/work/publicsecurerepo/publicsecurerepo/
+        trufflehog --regex --entropy=False --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/
+        trufflehog –regex --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/
   
         
     - name: Perform CodeQL Analysis
