@@ -38,7 +38,7 @@ jobs:
       run: |
         which trufflehog 
         #trufflehog –regex --json file:///home/runner/work/publicsecurerepo/publicsecurerepo
-        trufflehog --entropy true file:"//$PWD"
+        trufflehog --entropy true file:"//$PWD" > /opt/truffle-hog/output.txt
         
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
