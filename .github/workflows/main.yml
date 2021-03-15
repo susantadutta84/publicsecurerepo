@@ -14,7 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Code Checkout 
+      uses: actions/checkout@v2
+    #- name: secret-scan    
+    #  uses: max/secret-scan@master
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -27,24 +30,20 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine truffleHog gittyleaks
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: secret-scan    
-      uses: max/secret-scan@master    
-    - name: Super-Linter
-      uses: github/super-linter@v3.15.3    
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        languages: python
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi    
+    #- name: Super-Linter
+    #  uses: github/super-linter@v3.15.3    
+    #- name: Initialize CodeQL
+    #  uses: github/codeql-action/init@v1
+    #  with:
+    #    languages: python
     - name: Secret Scan
       run: |
         #which trufflehog 
-        git log -all
         #trufflehog –regex --json file:///home/runner/work/publicsecurerepo/publicsecurerepo
         #trufflehog –regex file:"//$PWD" > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
         #trufflehog –regex --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/  > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
-        #docker run -it --rm -v "$($pwd):/opt/scan-me" python:3.7-stretch /bin/bash
-        docker run --rm -v "$(pwd):/proj" dxa4481/trufflehog file:///proj
+        trufflehog --regex --entropy=False /home/runner/work/publicsecurerepo/publicsecurerepo/
   
         
     - name: Perform CodeQL Analysis
