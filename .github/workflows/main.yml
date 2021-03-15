@@ -39,7 +39,7 @@ jobs:
         which trufflehog 
         #trufflehog –regex --json file:///home/runner/work/publicsecurerepo/publicsecurerepo
         #trufflehog –regex file:"//$PWD" > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
-        trufflehog –regex --repo_path "//$PWD"  > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
+        trufflehog –regex --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/  > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
         echo "TruffleHog Output:"
         cat trufflehog-output.txt
         
