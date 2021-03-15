@@ -34,4 +34,7 @@ jobs:
       uses: github/codeql-action/analyze@v1  
     - name: Docker linter - Hadolint
       run: docker run --rm -i hadolint/hadolint < Dockerfile     
-
+    - name: Scan image
+      uses: anchore/scan-action@v2
+      with:
+        image: "localbuild/testimage:latest"
