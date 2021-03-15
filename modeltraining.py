@@ -45,3 +45,4 @@ plt.yticks(())
 # Plot outputs
 plt.plot(X_test, linreg.predict(X_test), color='red',linewidth=3)
 plt.show()
+
