@@ -30,7 +30,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine truffleHog gittyleaks
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi    
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi   
+      #- echo "Installing truffleHog"
+      #- which pip3 && pip3 --version
+      #- which python3 && python3 --version
+      #- pip3 install 'truffleHog>=2.1.0,<3.0'
     #- name: Super-Linter
     #  uses: github/super-linter@v3.15.3    
     #- name: Initialize CodeQL
@@ -40,17 +44,14 @@ jobs:
     - name: Secret Scan
       run: |
         #which trufflehog 
-        #trufflehog –regex --json file:///home/runner/work/publicsecurerepo/publicsecurerepo
-        #trufflehog –regex file:"//$PWD" > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
-        #trufflehog –regex --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/  > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
-        #trufflehog --regex --entropy=False --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/
-        trufflehog –regex --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/ https://github.com/susantadutta84/publicsecurerepo.git
-  
+        trufflehog –regex "https://github.com/susantadutta84/publicsecurerepo.git"
+        #trufflehog --regex --rules secrets_config.json --entropy=False "$APP_REPO_URL"
         
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
     - name: Docker linter - Hadolint
       run: docker run --rm -i hadolint/hadolint < Dockerfile     
+      #`docker run --rm -i -v ${PWD}/hadolint.yml:/.hadolint.yaml hadolint/hadolint:v1.16.2 hadolint -f json - < Dockerfile`
     #- name: Scan image
     #  uses: anchore/scan-action@v2
     #  with:
