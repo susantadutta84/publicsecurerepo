@@ -24,8 +24,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Super-Linter
-      uses: github/super-linter@v3.15.3    
+    #- name: Super-Linter
+    #  uses: github/super-linter@v3.15.3    
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
