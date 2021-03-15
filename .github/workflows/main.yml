@@ -32,17 +32,6 @@ jobs:
         languages: python
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
-    - name: Docker linter   
-      uses: brpaz/hadolint-action@v1.2.1
-      with:
-        dockerfile: Dockerfile 
-    - name: Docker linter - Hadolint     
-      uses: addnab/docker-run-action@v2
-      with:
-        registry: ghcr.io/hadolint
-        image: hadolint:latest
-        run: |
-          echo "Running Script"
-          /work/run-script     
-        
+    - name: Install packages
+      run: docker run --rm -i hadolint/hadolint < Dockerfile     
 
