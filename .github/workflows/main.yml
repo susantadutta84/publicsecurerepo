@@ -44,8 +44,8 @@ jobs:
         cat trufflehog-output.txt
     - name: Secret Scan
       run: |
-        gitleaks --path=/home/runner/work/publicsecurerepo/ -v
-        gitleaks --path=/home/runner/work/publicsecurerepo/ -v --no-git
+        gitleak --path=/home/runner/work/publicsecurerepo/ -v --report=my-report.json
+        gitleak --path=/home/runner/work/publicsecurerepo/ -v --no-git --report=my-report.json
         
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
