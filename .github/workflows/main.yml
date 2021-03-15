@@ -35,10 +35,12 @@ jobs:
       with:
         languages: python
     - name: Secret Scan
-      run: |
-        which trufflehog 
-        trufflehog --regex --entropy=False .
-        #truffleHog –regex </path/to/directory/of/repo>
+    #  run: |
+    #    which trufflehog 
+    #    truffleHog –regex --json --branch main -max_depth 5 .
+      uses: UnicornGlobal/trufflehog-actions-scan@master
+      with:
+        branch: ${{ github.head_ref }}
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
     - name: Docker linter - Hadolint
