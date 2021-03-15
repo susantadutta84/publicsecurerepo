@@ -30,6 +30,7 @@ jobs:
       uses: github/codeql-action/init@v1
       with:
         languages: python
+    #Discover vulnerabilities across a codebase,     
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
     - name: Docker linter - Hadolint
@@ -38,3 +39,11 @@ jobs:
       uses: anchore/scan-action@v2
       with:
         image: "localbuild/testimage:latest"
+    - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.4.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'owasp/zap2docker-stable'
+          target: 'https://www.zaproxy.org'
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
