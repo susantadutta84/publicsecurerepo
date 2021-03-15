@@ -40,7 +40,7 @@ jobs:
         #trufflehog –regex --json file:///home/runner/work/publicsecurerepo/publicsecurerepo
         #trufflehog –regex file:"//$PWD" > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
         #trufflehog –regex --repo_path /home/runner/work/publicsecurerepo/publicsecurerepo/  > /home/runner/work/publicsecurerepo/publicsecurerepo/trufflehog-output.txt
-        docker run -it --rm -v "$($pwd):/opt/scan-me" python:3.7-stretch /bin/bash
+        #docker run -it --rm -v "$($pwd):/opt/scan-me" python:3.7-stretch /bin/bash
         docker run --rm -v "$(pwd):/proj" dxa4481/trufflehog file:///proj
         echo "TruffleHog Output:"
         cat trufflehog-output.txt
