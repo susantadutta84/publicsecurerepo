@@ -21,6 +21,10 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
+         pwd
+         ls -la
+    - name: Install dependencies
+      run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
@@ -31,9 +35,10 @@ jobs:
       with:
         languages: python
     - name: Secret Scan
-      # You may pin to the exact commit or the version.
-      # uses: max/secret-scan@40818319d07ccc6588021ead3c0af76cec2e6496
-      uses: max/secret-scan@1.0.0    
+      run: |
+        pip install truffleHog
+        truffleHog --regex --entropy=False </path/to/directory/of/repo>
+        #truffleHog –regex </path/to/directory/of/repo>
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
     - name: Docker linter - Hadolint
