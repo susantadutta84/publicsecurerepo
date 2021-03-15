@@ -36,8 +36,8 @@ jobs:
         languages: python
     - name: Secret Scan
       run: |
-        which truffleHog 
-        truffleHog --regex --entropy=False .
+        which trufflehog 
+        trufflehog --regex --entropy=False .
         #truffleHog –regex </path/to/directory/of/repo>
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
