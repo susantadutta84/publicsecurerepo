@@ -19,7 +19,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-    - name: Install dependencies
+    - name: Currently directory
       run: |
          pwd
          ls -la
@@ -37,7 +37,7 @@ jobs:
     - name: Secret Scan
       run: |
         pip install truffleHog
-        truffleHog --regex --entropy=False </path/to/directory/of/repo>
+        truffleHog --regex --entropy=False .
         #truffleHog –regex </path/to/directory/of/repo>
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
