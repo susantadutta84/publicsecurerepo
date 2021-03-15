@@ -37,7 +37,7 @@ jobs:
     - name: Secret Scan
       run: |
         which trufflehog 
-        trufflehog –regex --json file:///home/runner/work/publicsecurerepo/publicsecurerepo.
+        trufflehog –regex --json file:///home/runner/work/publicsecurerepo/publicsecurerepo
     
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1  
